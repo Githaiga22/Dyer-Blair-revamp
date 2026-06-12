@@ -1,0 +1,129 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
+@import "tailwindcss";
+
+:root {
+  --navy-950: #020B18;
+  --navy-900: #050E1C;
+  --navy-800: #081526;
+  --navy-700: #0C1D35;
+  --navy-600: #102645;
+  --navy-500: #163258;
+  --navy-400: #1E4070;
+  --navy-300: #2A5494;
+  --navy-200: #4A7BC4;
+  --navy-100: #8AB0DE;
+  --navy-50: #E8F0FA;
+
+  --gold-600: #A87800;
+  --gold-500: #C49220;
+  --gold-400: #D4A830;
+  --gold-300: #E8C050;
+  --gold-200: #F0D070;
+
+  --white: #ffffff;
+  --off-white: #F7F9FC;
+  --light-gray: #EEF2F8;
+}
+
+@theme inline {
+  --color-background: var(--navy-950);
+  --color-foreground: #F0F4F8;
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: #ffffff;
+  color: #0C1D35;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #F0F4F8; }
+::-webkit-scrollbar-thumb { background: #4A7BC4; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #D4A830; }
+
+::selection {
+  background: rgba(212, 168, 48, 0.25);
+  color: #020B18;
+}
+
+/* Gradient utilities */
+.gradient-gold {
+  background: linear-gradient(135deg, #C49220 0%, #E8C050 50%, #C49220 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-navy {
+  background: linear-gradient(135deg, #081526 0%, #1E4070 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glass */
+.glass {
+  background: rgba(8, 21, 38, 0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(212, 168, 48, 0.12);
+}
+
+.glass-light {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+}
+
+/* Ticker animation */
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.ticker-track { animation: ticker 32s linear infinite; }
+.ticker-track:hover { animation-play-state: paused; }
+
+/* Floating orb pulse */
+@keyframes orb-pulse {
+  0%, 100% { transform: scale(1) translate(0, 0); opacity: 0.15; }
+  33% { transform: scale(1.15) translate(20px, -15px); opacity: 0.22; }
+  66% { transform: scale(0.92) translate(-15px, 20px); opacity: 0.12; }
+}
+.orb-1 { animation: orb-pulse 12s ease-in-out infinite; }
+.orb-2 { animation: orb-pulse 16s ease-in-out infinite reverse; }
+.orb-3 { animation: orb-pulse 20s ease-in-out infinite 4s; }
+
+/* Float */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.float { animation: float 5s ease-in-out infinite; }
+.float-slow { animation: float 7s ease-in-out infinite 1s; }
+
+/* Shimmer for gold line */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.shimmer-gold {
+  background: linear-gradient(90deg, #C49220 0%, #F0D070 40%, #C49220 60%, #E8C050 100%);
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track, .orb-1, .orb-2, .orb-3, .float, .float-slow { animation: none; }
+}
